@@ -9,7 +9,7 @@ const {
 } = require("./middlewares/error.handler");
 
 const app = express();
-const port = 3010;
+const port = process.env.PORT || 3010;
 const IP = "192.168.0.106";
 //const { faker } = require("@faker-js/faker");
 
@@ -25,10 +25,10 @@ const options = {
     }
   }
 }
-app.use(cors(options));
+app.use(cors());
 
 //----------- Main --------------//
-app.get('/', (request, response) => {
+app.get('/api', (request, response) => {
   console.log("Nueva Peticion!!");
   response.send("Hola, mi server en express")
 });
