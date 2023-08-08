@@ -1,11 +1,16 @@
 const { faker } = require("@faker-js/faker");
 const boom = require("@hapi/boom");
+//const pool = require("../libs/postgres.pool");
+const sequelize = require("../libs/sequelize");
 
 class ProductsServices {
 
   constructor(){
     this.products = [];
-    this.generate()
+    this.generate();
+
+    /* this.pool = pool;
+    this.pool.on("error", (err) => {console.error(err)}) */;
   }
 
   generate(size = 10){
@@ -29,16 +34,22 @@ class ProductsServices {
       image,
       isBlock
     };
+
+    //const query = `INSERT INTO tasks (title, completed) VALUES ('${name}', ${isBlock})`;
+    //const response = await this.pool.query(query);
+
     this.products.push(product);
     return product;
   };
 
   async find() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(this.products);
-      }, 2000);
-    })
+    /* const query = "SELECT * FROM tasks";
+    const response = await this.pool.query(query);
+    return response.rows; */
+
+    const query = "SELECT * FROM tasks";
+    const [data] = await sequelize.query(query);
+    return data;
   }
 
   async findOne(id) {

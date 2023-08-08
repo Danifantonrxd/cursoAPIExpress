@@ -1,0 +1,23 @@
+
+
+// Up an image in docker
+  docker-compose up -d postgres
+
+// Turn off an image in docker
+  docker-compose down postgres
+
+// See images running in docker
+  docker-compose ps
+
+// See images ids running
+  docker ps
+
+// See image details
+  docker inspect <image-id>
+
+// Go into the docker image (operative system)
+  docker-compose exec postgres bash
+
+// Connect to database in docker
+  psql -h localhost -d my_store -U danifanton
+
