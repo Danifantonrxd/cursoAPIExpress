@@ -5,19 +5,30 @@ const {
   createProductSchema,
   updateProductSchema,
   getProductSchema,
+  queryProductSchema,
 } = require('../schemas/product.schema');
 
 const router = express.Router();
 const service = new ProductsServices();
 
 //----------- Products --------------//
-router.get('/', async (request, response) => {
-  const products = await service.find();
-  response.json(products);
-});
+router.get(
+  '/',
+  validatorHandler(queryProductSchema, 'query'),
+  async (request, response, next) => {
+    try {
+      const pagination = request.query;
+      const products = await service.find(pagination);
+      response.json(products);
+    } catch (error) {
+      next(error)
+    }
+  }
+);
 
-router.get('/:id',
-  validatorHandler(getProductSchema, "params"),
+router.get(
+  '/:id',
+  validatorHandler(getProductSchema, 'params'),
   async (request, response, next) => {
     try {
       const { id } = request.params;
@@ -26,21 +37,27 @@ router.get('/:id',
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
-router.post('/',
-  validatorHandler(createProductSchema, "body"),
-  async (request, response) => {
-    const body = request.body;
-    const newProduct = await service.create(body);
-    response.status(201).json(newProduct);
-  }
+router.post(
+  '/',
+  validatorHandler(createProductSchema, 'body'),
+  async (request, response, next) => {
+    try {
+      const body = request.body;
+      const newProduct = await service.create(body);
+      response.status(201).json(newProduct);
+    } catch (error) {
+      next(error);
+    }
+  },
 );
 
-router.patch('/:id',
-  validatorHandler(getProductSchema, "params"),
-  validatorHandler(updateProductSchema, "body"),
+router.patch(
+  '/:id',
+  validatorHandler(getProductSchema, 'params'),
+  validatorHandler(updateProductSchema, 'body'),
   async (request, response, next) => {
     try {
       const { id } = request.params;
@@ -50,18 +67,16 @@ router.patch('/:id',
     } catch (error) {
       next(error);
     }
-  }
+  },
 );
 
-router.delete('/:id', async (request, response) => {
+router.delete('/:id', async (request, response, next) => {
   try {
     const { id } = request.params;
     const res = await service.delete(id);
     response.json(res);
   } catch (error) {
-    response.status(404).json({
-      message: error.message,
-    });
+    next(error);
   }
 });
 

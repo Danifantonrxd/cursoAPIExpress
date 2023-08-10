@@ -4,7 +4,7 @@
   docker-compose up -d postgres
 
 // Turn off an image in docker
-  docker-compose down postgres
+  docker-compose stop postgres
 
 // See images running in docker
   docker-compose ps

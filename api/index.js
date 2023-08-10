@@ -1,4 +1,5 @@
 const express = require('express');
+const os = require('os');
 
 const  { routerAPI }  = require("./routes");
 const cors = require('cors');
@@ -11,7 +12,7 @@ const {
 
 const app = express();
 const port = process.env.PORT || 3010;
-const IP = "192.168.0.106";
+const IP = "192.168.0.103";
 //const { faker } = require("@faker-js/faker");
 
 app.use(express.json());

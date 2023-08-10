@@ -1,28 +1,32 @@
 const express = require('express');
+const CustomersServices = require('../services/customers.service');
 const validatorHandler = require('../middlewares/validator.handler');
-const CategoriesServices = require('../services/categories.service');
 const {
-  createCategorySchema,
-  updateCategorySchema,
-  getCategorySchema,
-} = require('../schemas/category.schema');
+  createCustomerSchema,
+  updateCustomerSchema,
+  getCustomerSchema,
+} = require('../schemas/customer.schema');
 
 const router = express.Router();
-const service = new CategoriesServices();
+const service = new CustomersServices();
 
-router.get('/', async (request, response) => {
-  const categories = await service.find();
-  response.json(categories);
+router.get('/', async (request, response, next) => {
+  try {
+    const customers = await service.find();
+    response.json(customers);
+  } catch (error) {
+    next(error);
+  }
 });
 
 router.get(
   '/:id',
-  validatorHandler(getCategorySchema, 'params'),
+  validatorHandler(getCustomerSchema, 'params'),
   async (request, response, next) => {
     try {
       const { id } = request.params;
-      const category = await service.findOne(id);
-      response.json(category);
+      const customer = await service.findOne(id);
+      response.json(customer);
     } catch (error) {
       next(error);
     }
@@ -31,12 +35,12 @@ router.get(
 
 router.post(
   '/',
-  validatorHandler(createCategorySchema, 'body'),
+  validatorHandler(createCustomerSchema, 'body'),
   async (request, response, next) => {
     try {
       const body = request.body;
-      const newCategoy = await service.create(body);
-      response.status(201).json(newCategoy);
+      const newCustomer = await service.create(body);
+      response.status(201).json(newCustomer);
     } catch (error) {
       next(error);
     }
@@ -45,14 +49,14 @@ router.post(
 
 router.patch(
   '/:id',
-  validatorHandler(getCategorySchema, 'params'),
-  validatorHandler(updateCategorySchema, 'body'),
+  validatorHandler(getCustomerSchema, 'params'),
+  validatorHandler(updateCustomerSchema, 'body'),
   async (request, response, next) => {
     try {
       const { id } = request.params;
       const body = request.body;
-      const category = await service.update(id, body);
-      response.json(category);
+      const customer = await service.update(id, body);
+      response.json(customer);
     } catch (error) {
       next(error);
     }
