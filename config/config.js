@@ -2,11 +2,11 @@ require("dotenv").config();
 
 const config = {
   env: process.env.NODE_ENV || "dev",
-  port: process.env.PORT || 3010,
-  dbUser: process.env.DB_USER,
-  dbPassword: process.env.DB_PASSWORD,
-  dbHost: process.env.DB_HOST,
-  dbName: process.env.DB_NAME,
+  port: process.env.PORT || 5432,
+  dbUser: process.env.POSTGRES_USER,
+  dbPassword: process.env.POSTGRES_PASSWORD,
+  dbHost: process.env.POSTGRES_HOST,
+  dbName: process.env.POSTGRES_DATABASE,
   dbPort: process.env.DB_PORT,
 }
 
