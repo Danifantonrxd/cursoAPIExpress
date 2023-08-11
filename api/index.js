@@ -1,5 +1,6 @@
 const express = require('express');
-const os = require('os');
+const pool = require("./libs/postgres.pool");
+const { models } = require("./libs/sequelize");
 
 const  { routerAPI }  = require("./routes");
 const cors = require('cors');
@@ -43,9 +44,11 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 //--------------- Listen for petitions -------------------//
-app.listen(port, () => {
-  console.log("Listening on http://" + IP + ":" + port + "/")
+app.listen(port, async () => {
+  console.log("Listening on http://" + IP + ":" + port + "/");
+  console.log(process.env.NODE_ENV);
 });
+
 
 
 

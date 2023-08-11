@@ -22,7 +22,7 @@ const OrderSchema = {
 		onUpdate: 'CASCADE',
 		onDelete: 'SET NULL',
 	},
-  total: {
+  /* total: {
     type: DataTypes.VIRTUAL,
     //Do this only if you know that there's not gonna be to many items by order
     //If so, it is better to do a SQL query to the database
@@ -33,7 +33,7 @@ const OrderSchema = {
         }, 0);
       }
     }
-  },
+  }, */
 	createdAt: {
 		allowNull: false,
 		type: DataTypes.DATE,
