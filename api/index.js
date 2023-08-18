@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require("./libs/postgres.pool");
 const { models } = require("./libs/sequelize");
+const { checkApiKey } = require("./middlewares/auth.handler");
 
 const  { routerAPI }  = require("./routes");
 const cors = require('cors');
@@ -30,10 +31,17 @@ const options = {
 }
 app.use(cors());
 
+require("./utils/auth");
+
 //----------- Main --------------//
-app.get('/api', (request, response) => {
+app.get('/', (request, response) => {
   console.log("Nueva Peticion!!");
   response.send("Hola, mi server en express")
+});
+
+app.get('/nueva-ruta', checkApiKey,(request, response) => {
+  console.log("Nueva Peticion!!");
+  response.send("Hola, ruta protegida")
 });
 
 routerAPI(app);

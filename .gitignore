@@ -161,3 +161,4 @@ dist
 postgres_data
 mysql_data
 .vercel
+api/utils/tests
