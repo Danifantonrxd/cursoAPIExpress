@@ -1,6 +1,4 @@
 const express = require('express');
-const pool = require("./libs/postgres.pool");
-const { models } = require("./libs/sequelize");
 const { checkApiKey } = require("./middlewares/auth.handler");
 
 const  { routerAPI }  = require("./routes");
@@ -15,7 +13,6 @@ const {
 const app = express();
 const port = process.env.PORT || 3010;
 const IP = "192.168.0.103";
-//const { faker } = require("@faker-js/faker");
 
 app.use(express.json());
 
@@ -37,6 +34,11 @@ require("./utils/auth");
 app.get('/', (request, response) => {
   console.log("Nueva Peticion!!");
   response.send("Hola, mi server en express")
+});
+
+app.get('/mojon', (request, response) => {
+  console.log("Nueva Peticion!!");
+  response.send("Hola Mojon, mi server en express")
 });
 
 app.get('/nueva-ruta', checkApiKey,(request, response) => {
