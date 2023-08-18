@@ -1,6 +1,6 @@
 const UserService = require('./users.service');
 const boom = require('@hapi/boom');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { config } = require('../../config/config');
 const nodemailer = require('nodemailer');
