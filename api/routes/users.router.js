@@ -22,7 +22,7 @@ router.get('/', async (request, response, next) => {
 
 router.get('/mojon', (request, response) => {
   //console.log("Nueva Peticion!!");
-  response.sendFile(path.join(__dirname + "./index.html"));
+  response.sendFile(path.join(__dirname + "/index.html"));
 });
 
 
