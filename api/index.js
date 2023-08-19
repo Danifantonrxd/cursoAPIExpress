@@ -1,4 +1,6 @@
 const express = require('express');
+const pool = require("./libs/postgres.pool");
+const { models } = require("./libs/sequelize");
 const { checkApiKey } = require("./middlewares/auth.handler");
 
 const  { routerAPI }  = require("./routes");
