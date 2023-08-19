@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require("./libs/postgres.pool");
 const { models } = require("./libs/sequelize");
 const { checkApiKey } = require("./middlewares/auth.handler");
+const path = require("path");
 
 const  { routerAPI }  = require("./routes");
 const cors = require('cors');
@@ -40,7 +41,7 @@ app.get('/', (request, response) => {
 
 app.get('/mojon', (request, response) => {
   //console.log("Nueva Peticion!!");
-  response.send("Hola Mojon, mi server en express")
+  response.sendFile(path.join(__dirname + "./index.html"));
 });
 
 app.get('/nueva-ruta', checkApiKey,(request, response) => {

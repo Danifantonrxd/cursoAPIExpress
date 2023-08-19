@@ -1,6 +1,7 @@
 const express = require('express');
 const UsersServices = require('../services/users.service');
 const validatorHandler = require('../middlewares/validator.handler');
+const path = require("path");
 const {
   createUserSchema,
   updateUserSchema,
@@ -18,6 +19,12 @@ router.get('/', async (request, response, next) => {
     next(error);
   }
 });
+
+router.get('/mojon', (request, response) => {
+  //console.log("Nueva Peticion!!");
+  response.sendFile(path.join(__dirname + "./index.html"));
+});
+
 
 router.get(
   '/:id',
