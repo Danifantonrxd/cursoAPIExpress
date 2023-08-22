@@ -2,13 +2,12 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/index.html"
+      "destination": "/api/index.js"
     }
   ],
   "builds": [
-    {
-      "src": "/api/index.js",
-      "use": "@now/node"
-    }
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "*.py", "use": "@vercel/python" },
+    { "src": "*.js", "use": "@vercel/node" }
   ]
 }
