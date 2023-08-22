@@ -21,7 +21,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/mojon', (request, response) => {
-  response.sendFile(path.join(__dirname, '../index2.html'));
+  response.sendFile(path.join(__dirname, '../index.html'));
 });
 
 app.get('/nueva-ruta', checkApiKey, (request, response) => {
