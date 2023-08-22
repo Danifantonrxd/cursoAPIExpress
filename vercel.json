@@ -7,6 +7,7 @@
   ],
   "builds": [
     { "src": "/api/index.js", "use": "@vercel/node" },
-    { "src": "/(.*).html", "use": "@vercel/static" }
+    { "src": "(.*).html", "use": "@vercel/static" }
   ]
 }
+
