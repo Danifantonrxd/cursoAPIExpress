@@ -20,8 +20,8 @@ app.get('/', (request, response) => {
   response.sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.use('/mojon', (request, response) => {
-  response.sendFile(path.join(__dirname, '../index.html'));
+app.get('/mojon', (request, response) => {
+  response.sendFile(path.join(__dirname, '../index2.html'));
 });
 
 app.get('/nueva-ruta', checkApiKey, (request, response) => {
