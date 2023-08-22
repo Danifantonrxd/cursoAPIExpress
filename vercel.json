@@ -6,6 +6,6 @@
     }
   ],
   "builds": [
-    { "src": "*.js", "use": "@now/node" }
+    { "src": "/api/index.js", "use": "@vercel/node" }
   ]
 }
