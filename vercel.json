@@ -6,7 +6,7 @@
     },
     {
       "source": "/mojon",
-      "destination": "/index.html"
+      "destination": "/public/html/mojon.html"
     }
   ],
   "builds": [
