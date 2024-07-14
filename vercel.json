@@ -5,6 +5,10 @@
       "destination": "/api"
     },
     {
+      "source": "/crack",
+      "destination": "/index.html"
+    },
+    {
       "source": "/mojon",
       "destination": "/public/html/mojon.html"
     }
@@ -12,7 +16,7 @@
   "builds": [
     { "src": "/api/index.js", "use": "@vercel/node" },
     { "src": "/index.html", "use": "@vercel/static" },
-    { "src": "/mojon.html", "use": "@vercel/static" }
+    { "src": "/public/html/mojon.html", "use": "@vercel/static" }
   ]
 }
 

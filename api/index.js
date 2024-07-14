@@ -24,6 +24,10 @@ app.get('/mojon', (request, response) => {
   response.sendFile(path.join(__dirname, '../index.html'));
 });
 
+app.get('/crack', (request, response) => {
+  response.sendFile(path.join(__dirname, '../index.html'));
+});
+
 app.get('/nueva-ruta', checkApiKey, (request, response) => {
   //console.log("Nueva Peticion!!");
   response.send('Hola, ruta protegida');
