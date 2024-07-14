@@ -10,13 +10,13 @@
     },
     {
       "source": "/mojon",
-      "destination": "/public/html/mojon.html"
+      "destination": "/pages/mojon/mojon.html"
     }
   ],
   "builds": [
     { "src": "/api/index.js", "use": "@vercel/node" },
     { "src": "/index.html", "use": "@vercel/static" },
-    { "src": "/public/html/mojon.html", "use": "@vercel/static" }
+    { "src": "/pages/mojon/mojon.html", "use": "@vercel/static" }
   ]
 }
 
